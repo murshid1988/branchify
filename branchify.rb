@@ -6,7 +6,7 @@ class Branchify < Formula
   license "MIT"
 
   def install
-    bin.install "to-branch-name.sh" => "branchify"
+    bin.install "branchify.sh" => "branchify"
     man1.install "branchify.1"
   end
 

@@ -1,14 +1,14 @@
 #!/usr/bin/env bash
 #
-# to-branch-name.sh
+# branchify.sh
 # Convert an arbitrary string into a valid, sane git branch name.
 #
 # Usage:
-#   ./to-branch-name.sh "Fix bug: user login fails!!"
-#   echo "Some Title" | ./to-branch-name.sh
+#   ./branchify.sh "Fix bug: user login fails!!"
+#   echo "Some Title" | ./branchify.sh
 #
 # Or source it and call the function directly:
-#   source to-branch-name.sh
+#   source branchify.sh
 #   to_branch_name "Add OAuth2 support (v2)"
 #
 # Rules enforced (per `git check-ref-format`, plus common conventions):

@@ -60,7 +60,7 @@ Download the script and put it on your `PATH`:
 
 ```
 sudo curl -o /usr/local/bin/branchify \
-  https://raw.githubusercontent.com/murshid1988/branchify/main/to-branch-name.sh
+  https://raw.githubusercontent.com/murshid1988/branchify/main/branchify.sh
 sudo chmod +x /usr/local/bin/branchify
 ```
 
@@ -90,7 +90,7 @@ irm https://raw.githubusercontent.com/murshid1988/branchify/main/windows/uninsta
   Linux instructions above inside your WSL distro (Homebrew, apt, or manual).
 - **Git Bash**:
   ```
-  curl -o branchify.sh https://raw.githubusercontent.com/murshid1988/branchify/main/to-branch-name.sh
+  curl -o branchify.sh https://raw.githubusercontent.com/murshid1988/branchify/main/branchify.sh
   bash branchify.sh "Some Title"
   ```
 

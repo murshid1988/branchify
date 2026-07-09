@@ -13,7 +13,7 @@ trap 'rm -rf "$BUILD"' EXIT
 
 mkdir -p "$BUILD/DEBIAN" "$BUILD/usr/bin" "$BUILD/usr/share/man/man1" "$BUILD/usr/share/doc/branchify"
 
-install -m755 "$ROOT/to-branch-name.sh" "$BUILD/usr/bin/branchify"
+install -m755 "$ROOT/branchify.sh" "$BUILD/usr/bin/branchify"
 gzip -9 -c "$ROOT/branchify.1" > "$BUILD/usr/share/man/man1/branchify.1.gz"
 install -m644 "$ROOT/LICENSE" "$BUILD/usr/share/doc/branchify/copyright"
 

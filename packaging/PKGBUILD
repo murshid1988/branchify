@@ -11,7 +11,7 @@ sha256sums=('cef1017bbeb677d987efc4b798a7e3dd1eea90dffa9f8bdc4363b3becf23a93c')
 
 package() {
   cd "$srcdir/branchify-${pkgver}"
-  install -Dm755 to-branch-name.sh "$pkgdir/usr/bin/branchify"
+  install -Dm755 branchify.sh "$pkgdir/usr/bin/branchify"
   install -Dm644 branchify.1 "$pkgdir/usr/share/man/man1/branchify.1"
   install -Dm644 LICENSE "$pkgdir/usr/share/licenses/$pkgname/LICENSE"
 }
