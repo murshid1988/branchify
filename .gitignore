@@ -1,0 +1,10 @@
+# Build artifacts
+*.deb
+*.zip
+branchify-windows.zip
+
+# OS cruft
+.DS_Store
+
+# Local tool config
+.claude/
