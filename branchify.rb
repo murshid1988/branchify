@@ -1,8 +1,8 @@
 class Branchify < Formula
   desc "Convert an arbitrary string into a valid git branch name"
   homepage "https://github.com/murshid1988/branchify"
-  url "https://github.com/murshid1988/branchify/archive/refs/tags/v1.1.2.tar.gz"
-  sha256 "b9a5defe7ecdae473a2b4273ecee61bd0a7031996c0aa494469c32f93ce6ef6f"
+  url "https://github.com/murshid1988/branchify/archive/refs/tags/v1.1.3.tar.gz"
+  sha256 "39344220ba5fd9cbbba6a113816fe29b87d22cabe5497f88c4f1975c02190303"
   license "MIT"
 
   def install
