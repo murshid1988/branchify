@@ -1,0 +1,40 @@
+<svg width="1280" height="480" viewBox="0 0 1280 480" xmlns="http://www.w3.org/2000/svg" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0d1117"/>
+      <stop offset="100%" stop-color="#161b22"/>
+    </linearGradient>
+    <linearGradient id="accent" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#3fb950"/>
+      <stop offset="100%" stop-color="#58a6ff"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="1280" height="480" rx="24" fill="url(#bg)"/>
+  <rect x="1" y="1" width="1278" height="478" rx="23" fill="none" stroke="#30363d" stroke-width="2"/>
+
+  <!-- title bar -->
+  <circle cx="48" cy="48" r="7" fill="#ff5f56"/>
+  <circle cx="72" cy="48" r="7" fill="#ffbd2e"/>
+  <circle cx="96" cy="48" r="7" fill="#27c93f"/>
+  <text x="640" y="53" text-anchor="middle" fill="#8b949e" font-size="18">zsh</text>
+  <line x1="0" y1="80" x2="1280" y2="80" stroke="#30363d" stroke-width="2"/>
+
+  <!-- wordmark -->
+  <text x="60" y="170" font-size="64" font-weight="700" fill="#e6edf3">branchify</text>
+  <rect x="60" y="188" width="360" height="6" rx="3" fill="url(#accent)"/>
+  <text x="60" y="230" font-size="24" fill="#8b949e">convert any string into a valid git branch name</text>
+
+  <!-- terminal example -->
+  <text x="60" y="300" font-size="22" fill="#58a6ff">$</text>
+  <text x="90" y="300" font-size="22" fill="#e6edf3">branchify "Fix bug: user login fails!!"</text>
+
+  <text x="60" y="340" font-size="22" fill="#3fb950">→</text>
+  <text x="90" y="340" font-size="22" fill="#79c0ff">fix-bug-user-login-fails</text>
+
+  <text x="60" y="390" font-size="22" fill="#58a6ff">$</text>
+  <text x="90" y="390" font-size="22" fill="#e6edf3">echo "Add OAuth2 support (v2)" | branchify</text>
+
+  <text x="60" y="430" font-size="22" fill="#3fb950">→</text>
+  <text x="90" y="430" font-size="22" fill="#79c0ff">add-oauth2-support-v2</text>
+</svg>

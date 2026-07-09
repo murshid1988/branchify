@@ -1,5 +1,7 @@
 # branchify
 
+![branchify](assets/header.svg)
+
 Convert an arbitrary string into a valid git branch name.
 
 ```
