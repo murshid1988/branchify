@@ -3,12 +3,13 @@
 branchify \- convert an arbitrary string into a valid git branch name
 .SH SYNOPSIS
 .B branchify
-.RI [ STRING ...]
+.RI [ --no-clipboard ] " [" STRING ...]
 .br
 .B echo
 .RI STRING
 .B |
 .B branchify
+.RI [ --no-clipboard ]
 .SH DESCRIPTION
 .B branchify
 converts free-form text (a commit message, ticket title, or any string)
@@ -21,6 +22,12 @@ trims the result to a sane length.
 .PP
 Input can be given as command-line arguments (joined with spaces) or piped
 in on standard input.
+.PP
+The result is printed to standard output and, unless
+.B --no-clipboard
+is given, also copied to the system clipboard (via
+.BR pbcopy ", " wl-copy ", " xclip ", " xsel ", " "or " clip.exe ,
+whichever is found; silently skipped if none are available).
 .SH RULES ENFORCED
 .TP
 .B lowercase
@@ -60,6 +67,10 @@ is replaced with the literal string
 .TP
 .B length
 The result is truncated to 100 characters.
+.SH OPTIONS
+.TP
+.B --no-clipboard
+Print the result without copying it to the system clipboard.
 .SH EXIT STATUS
 .B 0
 on success. The script has no failure modes for normal input; an empty or

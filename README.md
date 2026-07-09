@@ -36,8 +36,8 @@ Download the `.deb` from the [latest release](https://github.com/murshid1988/bra
 and install it:
 
 ```
-curl -LO https://github.com/murshid1988/branchify/releases/latest/download/branchify_1.1.0_all.deb
-sudo apt install ./branchify_1.1.0_all.deb
+curl -LO https://github.com/murshid1988/branchify/releases/latest/download/branchify_1.1.1_all.deb
+sudo apt install ./branchify_1.1.1_all.deb
 ```
 
 Uninstall: `sudo apt remove branchify`
@@ -97,9 +97,14 @@ irm https://raw.githubusercontent.com/murshid1988/branchify/main/windows/uninsta
 ## Usage
 
 ```
-branchify [STRING ...]
-echo STRING | branchify
+branchify [--no-clipboard] [STRING ...]
+echo STRING | branchify [--no-clipboard]
 ```
+
+The result is printed to stdout and, unless `--no-clipboard` is given, also
+copied to your system clipboard (`pbcopy`, `wl-copy`, `xclip`, `xsel`, or
+`clip.exe`/`Set-Clipboard` on Windows — whichever is available; skipped
+silently if none are found, e.g. in CI).
 
 See `man branchify` for the full list of rules enforced (based on
 `git check-ref-format --branch`).

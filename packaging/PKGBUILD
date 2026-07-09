@@ -1,13 +1,13 @@
 # Maintainer: murshid1988 <murshid1988@gmail.com>
 pkgname=branchify
-pkgver=1.1.0
+pkgver=1.1.1
 pkgrel=1
 pkgdesc="Convert an arbitrary string into a valid git branch name"
 arch=('any')
 url="https://github.com/murshid1988/branchify"
 license=('MIT')
 source=("https://github.com/murshid1988/branchify/archive/refs/tags/v${pkgver}.tar.gz")
-sha256sums=('cb636d91e53afa39a06ccc56b9ccbb1aa8202ed39b7934c545712e30cbf4e11f')
+sha256sums=('SKIP')
 
 package() {
   cd "$srcdir/branchify-${pkgver}"

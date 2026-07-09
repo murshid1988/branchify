@@ -58,9 +58,18 @@ function ConvertTo-BranchName {
     return $s
 }
 
-if ($args.Count -gt 0) {
-    ConvertTo-BranchName -Text ($args -join ' ')
+$noClipboard = $args -contains '--no-clipboard'
+$textArgs = $args | Where-Object { $_ -ne '--no-clipboard' }
+
+if ($textArgs.Count -gt 0) {
+    $result = ConvertTo-BranchName -Text ($textArgs -join ' ')
 } else {
     $stdin = [Console]::In.ReadToEnd()
-    ConvertTo-BranchName -Text $stdin.Trim()
+    $result = ConvertTo-BranchName -Text $stdin.Trim()
+}
+
+Write-Output $result
+
+if (-not $noClipboard) {
+    try { Set-Clipboard -Value $result -ErrorAction Stop } catch { }
 }

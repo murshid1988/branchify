@@ -70,11 +70,41 @@ to_branch_name() {
   printf '%s\n' "$s"
 }
 
+# Copy a string to the system clipboard, best-effort. Silently does nothing
+# if no supported clipboard tool is found (e.g. headless/CI environments).
+copy_to_clipboard() {
+  local text="$1"
+  if command -v pbcopy >/dev/null 2>&1; then
+    printf '%s' "$text" | pbcopy
+  elif command -v wl-copy >/dev/null 2>&1; then
+    printf '%s' "$text" | wl-copy
+  elif command -v xclip >/dev/null 2>&1; then
+    printf '%s' "$text" | xclip -selection clipboard
+  elif command -v xsel >/dev/null 2>&1; then
+    printf '%s' "$text" | xsel --clipboard --input
+  elif command -v clip.exe >/dev/null 2>&1; then
+    printf '%s' "$text" | clip.exe
+  fi
+}
+
 # If executed directly (not sourced), run it on argv or stdin.
 if [[ "${BASH_SOURCE[0]}" == "${0}" ]]; then
-  if [ "$#" -gt 0 ]; then
-    to_branch_name "$*"
+  no_clipboard=0
+  args=()
+  for arg in "$@"; do
+    if [ "$arg" = "--no-clipboard" ]; then
+      no_clipboard=1
+    else
+      args+=("$arg")
+    fi
+  done
+
+  if [ "${#args[@]}" -gt 0 ]; then
+    result=$(to_branch_name "${args[*]}")
   else
-    to_branch_name "$(cat)"
+    result=$(to_branch_name "$(cat)")
   fi
+
+  printf '%s\n' "$result"
+  [ "$no_clipboard" -eq 1 ] || copy_to_clipboard "$result"
 fi
