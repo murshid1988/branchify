@@ -1,0 +1,82 @@
+.TH BRANCHIFY 1 "July 2026" "branchify 1.0" "User Commands"
+.SH NAME
+branchify \- convert an arbitrary string into a valid git branch name
+.SH SYNOPSIS
+.B branchify
+.RI [ STRING ...]
+.br
+.B echo
+.RI STRING
+.B |
+.B branchify
+.SH DESCRIPTION
+.B branchify
+converts free-form text (a commit message, ticket title, or any string)
+into a branch name that is guaranteed to pass
+.BR "git check-ref-format --branch" .
+.PP
+It lowercases the input, replaces whitespace and underscores with hyphens,
+strips characters git rejects in refs, collapses redundant separators, and
+trims the result to a sane length.
+.PP
+Input can be given as command-line arguments (joined with spaces) or piped
+in on standard input.
+.SH RULES ENFORCED
+.TP
+.B lowercase
+All characters are lowercased.
+.TP
+.B separators
+Spaces and underscores become hyphens; slashes are preserved as path
+separators (e.g. for scoped names like
+.IR feature/foo ).
+.TP
+.B disallowed characters
+The characters
+.BR "~ ^ : ? * [ \e"
+and ASCII control characters are stripped, as are any other characters
+outside
+.IR "[a-z0-9._/-]" .
+.TP
+.B dots and slashes
+Consecutive dots
+.RI ( .. )
+and consecutive slashes are collapsed to a single separator.
+.TP
+.B leading/trailing separators
+Leading or trailing
+.IR . ", " / ", " -
+are stripped.
+.TP
+.B reserved sequences
+A trailing
+.I .lock
+suffix and any
+.I @{
+sequence are removed; a bare
+.I @
+is replaced with the literal string
+.IR branch .
+.TP
+.B length
+The result is truncated to 100 characters.
+.SH EXIT STATUS
+.B 0
+on success. The script has no failure modes for normal input; an empty or
+fully-stripped result falls back to the literal branch name
+.IR branch .
+.SH EXAMPLES
+.TP
+.B branchify "Fix bug: user login fails!!"
+.RI \(-> " fix-bug-user-login-fails"
+.TP
+.B branchify "Add OAuth2 support (v2)"
+.RI \(-> " add-oauth2-support-v2"
+.TP
+.B echo "Some Title" | branchify
+.RI \(-> " some-title"
+.SH SEE ALSO
+.BR git-check-ref-format (1),
+.BR git-branch (1)
+.SH AUTHOR
+Generated for local use; not a distributed package.
