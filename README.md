@@ -38,8 +38,8 @@ Download the `.deb` from the [latest release](https://github.com/murshid1988/bra
 and install it:
 
 ```
-curl -LO https://github.com/murshid1988/branchify/releases/latest/download/branchify_1.1.3_all.deb
-sudo apt install ./branchify_1.1.3_all.deb
+curl -LO https://github.com/murshid1988/branchify/releases/latest/download/branchify_1.1.4_all.deb
+sudo apt install ./branchify_1.1.4_all.deb
 ```
 
 Uninstall: `sudo apt remove branchify`
