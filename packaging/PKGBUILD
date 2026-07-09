@@ -7,7 +7,7 @@ arch=('any')
 url="https://github.com/murshid1988/branchify"
 license=('MIT')
 source=("https://github.com/murshid1988/branchify/archive/refs/tags/v${pkgver}.tar.gz")
-sha256sums=('SKIP')
+sha256sums=('cb636d91e53afa39a06ccc56b9ccbb1aa8202ed39b7934c545712e30cbf4e11f')
 
 package() {
   cd "$srcdir/branchify-${pkgver}"
