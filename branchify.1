@@ -71,11 +71,21 @@ The result is truncated to 100 characters.
 .TP
 .B --no-clipboard
 Print the result without copying it to the system clipboard.
+.TP
+.BR -h ", " --help
+Print a usage summary and exit.
 .SH EXIT STATUS
 .B 0
 on success. The script has no failure modes for normal input; an empty or
 fully-stripped result falls back to the literal branch name
 .IR branch .
+.PP
+Running
+.B branchify
+with no arguments and no piped input (i.e. attached to a terminal) prints
+usage help and exits
+.B 1
+instead of blocking on standard input.
 .SH EXAMPLES
 .TP
 .B branchify "Fix bug: user login fails!!"

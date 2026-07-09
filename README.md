@@ -108,6 +108,10 @@ copied to your system clipboard (`pbcopy`, `wl-copy`, `xclip`, `xsel`, or
 `clip.exe`/`Set-Clipboard` on Windows — whichever is available; skipped
 silently if none are found, e.g. in CI).
 
+Running `branchify` with no arguments in an interactive terminal (no piped
+input) prints usage help instead of hanging on stdin. Use `branchify --help`
+to see it any time.
+
 See `man branchify` for the full list of rules enforced (based on
 `git check-ref-format --branch`).
 

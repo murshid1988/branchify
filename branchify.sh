@@ -87,22 +87,44 @@ copy_to_clipboard() {
   fi
 }
 
+print_help() {
+  cat <<'EOF'
+Usage: branchify [--no-clipboard] STRING...
+       echo STRING | branchify [--no-clipboard]
+
+Convert an arbitrary string into a valid git branch name.
+
+Examples:
+  branchify "Fix bug: user login fails!!"  -> fix-bug-user-login-fails
+  echo "Add OAuth2 support (v2)" | branchify -> add-oauth2-support-v2
+
+Options:
+  --no-clipboard   Print the result without copying it to the clipboard
+  -h, --help       Show this help and exit
+
+See `man branchify` for the full list of rules enforced.
+EOF
+}
+
 # If executed directly (not sourced), run it on argv or stdin.
 if [[ "${BASH_SOURCE[0]}" == "${0}" ]]; then
   no_clipboard=0
   args=()
   for arg in "$@"; do
-    if [ "$arg" = "--no-clipboard" ]; then
-      no_clipboard=1
-    else
-      args+=("$arg")
-    fi
+    case "$arg" in
+      --no-clipboard) no_clipboard=1 ;;
+      -h|--help) print_help; exit 0 ;;
+      *) args+=("$arg") ;;
+    esac
   done
 
   if [ "${#args[@]}" -gt 0 ]; then
     result=$(to_branch_name "${args[*]}")
-  else
+  elif [ ! -t 0 ]; then
     result=$(to_branch_name "$(cat)")
+  else
+    print_help
+    exit 1
   fi
 
   printf '%s\n' "$result"

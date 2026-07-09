@@ -58,11 +58,36 @@ function ConvertTo-BranchName {
     return $s
 }
 
+function Show-Help {
+    @'
+Usage: branchify [--no-clipboard] STRING...
+       STRING | branchify [--no-clipboard]
+
+Convert an arbitrary string into a valid git branch name.
+
+Examples:
+  branchify "Fix bug: user login fails!!"    -> fix-bug-user-login-fails
+  "Add OAuth2 support (v2)" | branchify      -> add-oauth2-support-v2
+
+Options:
+  --no-clipboard   Print the result without copying it to the clipboard
+  -h, --help       Show this help and exit
+'@ | Write-Output
+}
+
+if ($args -contains '-h' -or $args -contains '--help') {
+    Show-Help
+    return
+}
+
 $noClipboard = $args -contains '--no-clipboard'
 $textArgs = $args | Where-Object { $_ -ne '--no-clipboard' }
 
 if ($textArgs.Count -gt 0) {
     $result = ConvertTo-BranchName -Text ($textArgs -join ' ')
+} elseif (-not [Console]::IsInputRedirected) {
+    Show-Help
+    exit 1
 } else {
     $stdin = [Console]::In.ReadToEnd()
     $result = ConvertTo-BranchName -Text $stdin.Trim()
