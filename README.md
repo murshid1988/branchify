@@ -14,8 +14,12 @@ echo "Add OAuth2 support (v2)" | branchify
 
 ```
 brew tap murshid1988/branchify
+brew trust --formula murshid1988/branchify/branchify
 brew install branchify
 ```
+
+(The `brew trust` step is required by Homebrew's tap trust feature for
+formulae from non-official taps.)
 
 ## Usage
 
